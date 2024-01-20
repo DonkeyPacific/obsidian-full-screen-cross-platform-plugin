@@ -60,12 +60,11 @@ export default class CrossPlatformFullScreenPlugin extends Plugin {
 			const elements = document.querySelectorAll(cls);
 			if (cls && elements) {
 				elements.forEach((element, i) => {
-					if (element.style.display === 'none') {
-						element.style.display = this.elementsStatusMap.get(cls + i.toString());
-						this.elementsStatusMap.delete(cls + i.toString());
-					} else {
-						this.elementsStatusMap.set(cls + i.toString(), element.style.display);
-						element.style.display = 'none';
+					const cname = 'fullscreen-cross-platform-hidden';
+					if(element.classList.contains(cname)){
+						element.removeClass(cname);
+					} else{
+						element.addClass(cname);
 					}
 				});
 			}
