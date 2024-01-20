@@ -1,5 +1,5 @@
 import { I18n } from 'i18n';
-import { App, Plugin, PluginSettingTab, Setting, moment} from 'obsidian';
+import { App, Plugin, PluginSettingTab, Setting, moment } from 'obsidian';
 import { Platform } from "obsidian";
 
 interface CrossPlatformFullScreenSettings {
@@ -14,7 +14,7 @@ export default class CrossPlatformFullScreenPlugin extends Plugin {
 	settings: CrossPlatformFullScreenSettings;
 	elementsStatusMap: Map<string, string> = new Map<string, string>();
 	i18n: I18n;
-	
+
 	handleClickFunc: (evt: Event) => void;
 
 	async onload() {
@@ -60,12 +60,11 @@ export default class CrossPlatformFullScreenPlugin extends Plugin {
 			const elements = document.querySelectorAll(cls);
 			if (cls && elements) {
 				elements.forEach((element, i) => {
-					if (element.style.display === 'none') {
-						element.style.display = this.elementsStatusMap.get(cls + i.toString());
-						this.elementsStatusMap.delete(cls + i.toString());
-					} else {
-						this.elementsStatusMap.set(cls + i.toString(), element.style.display);
-						element.style.display = 'none';
+					const cname = 'fullscreen-cross-platform-hidden';
+					if(element.classList.contains(cname)){
+						element.removeClass(cname);
+					} else{
+						element.addClass(cname);
 					}
 				});
 			}
@@ -110,7 +109,7 @@ class SettingTab extends PluginSettingTab {
 		const { containerEl } = this;
 
 		containerEl.empty();
-		
+
 		const i18n = this.plugin.i18n;
 		containerEl.createEl('h3', { text: i18n.t('settingsTitle') });
 		// containerEl.createEl('hr');
