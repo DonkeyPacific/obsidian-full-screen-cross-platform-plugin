@@ -1,0 +1,16 @@
+{
+	"id": "obsidian-full-screen-cross-platform-plugin",
+	"name": "Full Screen Toggle",
+	"version": "1.0.0",
+	"minAppVersion": "0.15.0",
+	"description": "Fullscreen toggle plugin across all platforms.",
+	"authorUrl": "",
+	"fundingUrl": {
+		"fundingUrl": {
+			"Buy Me a Coffee": "https://buymeacoffee.com",
+			"GitHub Sponsor": "https://github.com/sponsors",
+			"Patreon": "https://www.patreon.com/"
+		}
+	},
+	"isDesktopOnly": false
+}
