@@ -1,5 +1,5 @@
 import { I18n } from 'i18n';
-import { App, Plugin, PluginSettingTab, Setting, moment} from 'obsidian';
+import { App, Plugin, PluginSettingTab, Setting, moment } from 'obsidian';
 import { Platform } from "obsidian";
 
 interface CrossPlatformFullScreenSettings {
@@ -14,7 +14,7 @@ export default class CrossPlatformFullScreenPlugin extends Plugin {
 	settings: CrossPlatformFullScreenSettings;
 	elementsStatusMap: Map<string, string> = new Map<string, string>();
 	i18n: I18n;
-	
+
 	handleClickFunc: (evt: Event) => void;
 
 	async onload() {
@@ -110,7 +110,7 @@ class SettingTab extends PluginSettingTab {
 		const { containerEl } = this;
 
 		containerEl.empty();
-		
+
 		const i18n = this.plugin.i18n;
 		containerEl.createEl('h3', { text: i18n.t('settingsTitle') });
 		// containerEl.createEl('hr');
