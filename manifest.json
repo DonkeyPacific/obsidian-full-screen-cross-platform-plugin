@@ -1,0 +1,16 @@
+{
+	"id": "obsidian-full-screen-cross-platform-plugin",
+	"name": "Full Screen Toggle",
+	"version": "1.0.0",
+	"minAppVersion": "0.15.0",
+	"description": "Fullscreen toggle plugin across all platforms.",
+	"authorUrl": "",
+	"fundingUrl": {
+		"fundingUrl": {
+			"Buy Me a Coffee": "https://www.buymeacoffee.com/donkeypacific",
+			"Afdian(爱发电)": "https://afdian.net/a/donkeypacific",
+			"Patreon": "https://patreon.com/DonkeyPacific"
+		}
+	},
+	"isDesktopOnly": false
+}
