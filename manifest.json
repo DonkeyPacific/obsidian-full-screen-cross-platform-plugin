@@ -6,11 +6,9 @@
 	"description": "Fullscreen toggle plugin across all platforms.",
 	"authorUrl": "https://github.com/DonkeyPacific",
 	"fundingUrl": {
-		"fundingUrl": {
-			"Buy Me a Coffee": "https://www.buymeacoffee.com/donkeypacific",
-			"Afdian(爱发电)": "https://afdian.net/a/donkeypacific",
-			"Patreon": "https://patreon.com/DonkeyPacific"
-		}
+		"Buy Me a Coffee": "https://www.buymeacoffee.com/donkeypacific",
+		"Afdian(爱发电)": "https://afdian.net/a/donkeypacific",
+		"Patreon": "https://patreon.com/DonkeyPacific"
 	},
 	"isDesktopOnly": false
 }
