@@ -9,5 +9,5 @@ A fullscreen toggle plugin across all platforms for obsidian.
 
 **Contact me**
 
-- email: donkeypacific@gmail.com
+- email: donkeypacific@outlook.com
 
