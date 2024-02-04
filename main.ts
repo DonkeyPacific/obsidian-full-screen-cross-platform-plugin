@@ -73,7 +73,7 @@ export default class CrossPlatformFullScreenPlugin extends Plugin {
 
 	async toggleFullScreen() {
 		if (Platform.isMobile) {
-			const clsArr = ['mobile-navbar-actions', '.view-header', '.workspace-tab-header-inner'];
+			const clsArr = ['.mobile-navbar', '.view-header', '.workspace-tab-header-inner'];
 			if(Platform.isTablet){
 				clsArr.push('.workspace-tab-header-container');
 			}
