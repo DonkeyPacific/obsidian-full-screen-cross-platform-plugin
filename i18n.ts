@@ -1,5 +1,4 @@
 export const TRANSLATION_EN = new Map<string, string>([
-	["settingsTitle", "Full Screen Toggle Settings"],
 	["toggleMouseShortcuts", "Fullscreen toggle shortcut"],
 	["toggleMouseShortcutsDes", "The number of consecutive mouse or touchscreen clicks, with a time interval between two clicks less than 300ms."],
 	["doubleClick", "double click"],
@@ -7,7 +6,6 @@ export const TRANSLATION_EN = new Map<string, string>([
 ]);
 
 export const TRANSLATION_CH = new Map<string, string>([
-	["settingsTitle", "全屏切换设置"],
 	["toggleMouseShortcuts", "全屏切换快捷键"],
 	["toggleMouseShortcutsDes", "鼠标或触屏连续点击次数，两次点击时间间隔需小于300ms。"],
 	["doubleClick", "双击"],
@@ -15,7 +13,6 @@ export const TRANSLATION_CH = new Map<string, string>([
 ]);
 
 export const TRANSLATION_JA = new Map<string, string>([
-	["settingsTitle", "フルスクリーン切り替えの設定"],
 	["toggleMouseShortcuts", "フルスクリーン切り替えショートカット"],
 	["toggleMouseShortcutsDes", "マウスまたはタッチスクリーンの連続クリック回数、2回のクリック間隔は300ms未満である必要があります"],
 	["doubleClick", "ダブルクリック"],
@@ -23,7 +20,6 @@ export const TRANSLATION_JA = new Map<string, string>([
 ]);
 
 export const TRANSLATION_KO = new Map<string, string>([
-	["settingsTitle", "전체 화면 전환 설정"],
 	["toggleMouseShortcuts", "전체 화면 전환 바로 가기"],
 	["toggleMouseShortcutsDes", "마우스 또는 터치스크린 연속 클릭 횟수, 2회 클릭 간격은 300ms 미만이어야 합니다"],
 	["doubleClick", "더블 클릭"],
@@ -31,7 +27,6 @@ export const TRANSLATION_KO = new Map<string, string>([
 ]);
 
 export const TRANSLATION_UK = new Map<string, string>([
-	["settingsTitle", "Настройка переключения полноэкранного режима"],
 	["toggleMouseShortcuts", "Горячая клавиша переключения полноэкранного режима"],
 	["toggleMouseShortcutsDes", "оличество последовательных кликов мыши или сенсорного экрана с интервалом времени менее 300 мс"],
 	["doubleClick", "Двойной щелчок"],
@@ -39,7 +34,6 @@ export const TRANSLATION_UK = new Map<string, string>([
 ]);
 
 export const TRANSLATION_TW = new Map<string, string>([
-	["settingsTitle", "全螢幕切換設定"],
 	["toggleMouseShortcuts", "全螢幕切換快速鍵"],
 	["toggleMouseShortcutsDes", "鼠標或觸控螢幕連點次數，兩次點擊時間間隔需小於300毫秒"],
 	["doubleClick", "雙擊"],

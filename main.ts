@@ -3,11 +3,11 @@ import { App, Plugin, PluginSettingTab, Setting, moment } from 'obsidian';
 import { Platform } from "obsidian";
 
 interface CrossPlatformFullScreenSettings {
-	consecutiveClickTimes: string;
+	consecutiveClickTimes: number;
 }
 
 const DEFAULT_SETTINGS: Partial<CrossPlatformFullScreenSettings> = {
-	consecutiveClickTimes: '2'
+	consecutiveClickTimes: 3
 };
 
 export default class CrossPlatformFullScreenPlugin extends Plugin {
@@ -21,8 +21,8 @@ export default class CrossPlatformFullScreenPlugin extends Plugin {
 		await this.loadSettings();
 		// add command
 		this.addCommand({
-			id: 'toggle-full-screen-cross-platform',
-			name: 'Full screen',
+			id: 'toggle-full-screen',
+			name: 'toggle',
 			callback: async () => {
 				this.toggleFullScreen();
 			}
@@ -40,7 +40,7 @@ export default class CrossPlatformFullScreenPlugin extends Plugin {
 			document.removeEventListener(clickEventName, this.handleClickFunc);
 		}
 		const waitTime = 300;
-		const maxCount = parseInt(this.settings.consecutiveClickTimes);
+		const maxCount = this.settings.consecutiveClickTimes;
 		let lastTouchEnd = 0;
 		let touchCount = 0;
 		this.handleClickFunc = async (evt: Event) => {
@@ -73,7 +73,11 @@ export default class CrossPlatformFullScreenPlugin extends Plugin {
 
 	async toggleFullScreen() {
 		if (Platform.isMobile) {
-			this.toggle(['.mobile-navbar', '.view-header']);
+			const clsArr = ['mobile-navbar-actions', '.view-header', '.workspace-tab-header-inner'];
+			if(Platform.isTablet){
+				clsArr.push('.workspace-tab-header-container');
+			}
+			this.toggle(clsArr);
 		} else if (Platform.isDesktop) {
 			this.toggle(['.workspace-ribbon.side-dock-ribbon.mod-left',
 				'.workspace-split.mod-horizontal.mod-left-split',
@@ -111,7 +115,7 @@ class SettingTab extends PluginSettingTab {
 		containerEl.empty();
 
 		const i18n = this.plugin.i18n;
-		containerEl.createEl('h3', { text: i18n.t('settingsTitle') });
+		// containerEl.createEl('h3', { text: i18n.t('settingsTitle') });
 		// containerEl.createEl('hr');
 
 		new Setting(containerEl)
@@ -121,9 +125,9 @@ class SettingTab extends PluginSettingTab {
 				component
 					.addOption('2', i18n.t("doubleClick"))
 					.addOption('3', i18n.t("tripleClick"))
-					.setValue(this.plugin.settings.consecutiveClickTimes)
+					.setValue(this.plugin.settings.consecutiveClickTimes.toString())
 					.onChange((value) => {
-						this.plugin.settings.consecutiveClickTimes = value;
+						this.plugin.settings.consecutiveClickTimes = parseInt(value);
 						this.plugin.saveSettings();
 					});
 			});

@@ -7,5 +7,5 @@ If your plugin does not need CSS, delete this file.
 
 */
 .fullscreen-cross-platform-hidden{
-    display: none;
+    display: none !important;;
 }

@@ -1,9 +1,9 @@
 {
-	"id": "full-screen-cross-platform",
-	"name": "Full Screen Toggle",
-	"version": "1.0.1",
+	"id": "fullscreen-toggle",
+	"name": "Fullscreen Toggle",
+	"version": "1.0.2",
 	"minAppVersion": "0.15.0",
-	"description": "Fullscreen toggle plugin across all platforms.",
+	"description": "Toggle fullscreen across all platforms.",
 	"authorUrl": "https://github.com/DonkeyPacific",
 	"fundingUrl": {
 		"Buy Me a Coffee": "https://www.buymeacoffee.com/donkeypacific",
