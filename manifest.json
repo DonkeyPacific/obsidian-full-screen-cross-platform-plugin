@@ -1,6 +1,6 @@
 {
-	"id": "fullscreen-toggle",
-	"name": "Fullscreen Toggle",
+	"id": "full-screen-cross-platform",
+	"name": "Full Screen Toggle",
 	"version": "1.0.2",
 	"minAppVersion": "0.15.0",
 	"description": "Toggle fullscreen across all platforms.",
