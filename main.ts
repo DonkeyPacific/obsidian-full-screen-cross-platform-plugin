@@ -125,6 +125,7 @@ class SettingTab extends PluginSettingTab {
 				component
 					.addOption('2', i18n.t("doubleClick"))
 					.addOption('3', i18n.t("tripleClick"))
+					.addOption('-1', i18n.t("noClick"))
 					.setValue(this.plugin.settings.consecutiveClickTimes.toString())
 					.onChange((value) => {
 						this.plugin.settings.consecutiveClickTimes = parseInt(value);
