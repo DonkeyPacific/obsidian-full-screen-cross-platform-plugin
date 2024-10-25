@@ -3,7 +3,7 @@ export const TRANSLATION_EN = new Map<string, string>([
 	["toggleMouseShortcutsDes", "The number of consecutive mouse or touchscreen clicks, with a time interval between two clicks less than 300ms."],
 	["doubleClick", "double click"],
 	["tripleClick", "triple click"],
-	["noClick", "do not trigger on clicks"]
+	["noClick", "command|hotkey only"]
 ]);
 
 export const TRANSLATION_CH = new Map<string, string>([
@@ -11,7 +11,7 @@ export const TRANSLATION_CH = new Map<string, string>([
 	["toggleMouseShortcutsDes", "鼠标或触屏连续点击次数，两次点击时间间隔需小于300ms。"],
 	["doubleClick", "双击"],
 	["tripleClick", "三连击"],
-	["noClick", "没有点击"]
+	["noClick", "仅命令行或快捷键"]
 ]);
 
 export const TRANSLATION_JA = new Map<string, string>([
@@ -19,7 +19,7 @@ export const TRANSLATION_JA = new Map<string, string>([
 	["toggleMouseShortcutsDes", "マウスまたはタッチスクリーンの連続クリック回数、2回のクリック間隔は300ms未満である必要があります"],
 	["doubleClick", "ダブルクリック"],
 	["tripleClick", "トリプルクリック"],
-	["noClick", "クリックなし"]
+	["noClick", "コマンドラインまたはショートカットキーのみ"]
 ]);
 
 export const TRANSLATION_KO = new Map<string, string>([
@@ -27,7 +27,7 @@ export const TRANSLATION_KO = new Map<string, string>([
 	["toggleMouseShortcutsDes", "마우스 또는 터치스크린 연속 클릭 횟수, 2회 클릭 간격은 300ms 미만이어야 합니다"],
 	["doubleClick", "더블 클릭"],
 	["tripleClick", "트리플 클릭"],
-	["noClick", "클릭 없음"]
+	["noClick", "명령줄 또는 단축키만"]
 ]);
 
 export const TRANSLATION_UK = new Map<string, string>([
@@ -35,7 +35,7 @@ export const TRANSLATION_UK = new Map<string, string>([
 	["toggleMouseShortcutsDes", "оличество последовательных кликов мыши или сенсорного экрана с интервалом времени менее 300 мс"],
 	["doubleClick", "Двойной щелчок"],
 	["tripleClick", "Тройной щелчок"],
-	["noClick", "нет кликов"]
+	["noClick", "Только командная строка или сочетания клавиш"]
 ]);
 
 export const TRANSLATION_TW = new Map<string, string>([
@@ -43,7 +43,7 @@ export const TRANSLATION_TW = new Map<string, string>([
 	["toggleMouseShortcutsDes", "鼠標或觸控螢幕連點次數，兩次點擊時間間隔需小於300毫秒"],
 	["doubleClick", "雙擊"],
 	["tripleClick", "三擊"],
-	["noClick", "沒有點擊"]
+	["noClick", "僅控制台或鍵盤"]
 ]);
 export const TRANSLATION = new Map<string, Map<string, string>>([
 	['en', TRANSLATION_EN],
