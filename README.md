@@ -1,3 +1,14 @@
+# Note
+Switch Branch to Vannila and download ZIP 😥... Umm for the visual learners 
+
+** Step 1 **
+![alt text](assects/howto.png)
+
+** Step 2 ** once downloaded just need to manually install the plugin that's it
+![alt text](assects/Download.png)
+
+----
+
 # Fullscreen Toggle
 
 Fullscreen focus across all platforms. It helps you get more display space when you focus on reading notes, especially on mobile devices.
