@@ -1,0 +1,203 @@
+/* Git varient */
+
+/*
+ * --- CORE ANIMATION AND UTILITY STYLES ---
+ * umm animation copied form prozen mostly 1-1 hence it's named Zen mode
+*/
+
+
+@keyframes zen-fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+.zen-animate {
+    animation: zen-fadeIn var(--fadeIn-duration, 0.5s) ease-out;
+}
+
+.zen-hide {
+    display: none !important;
+}
+
+/* hide scroll bar ohhh. */
+.zen-noscroll {
+    overflow: hidden !important;
+}
+.zen-noscroll::-webkit-scrollbar {
+    display: none;
+}
+.zen-noscroll {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+/*
+ * --- VIGNETTE EFFECTS (For Zen Mode) ---
+ * The opacity and scale of the vignette Should be user editable like in prozen.
+*/
+.zen-vignette-linear, .zen-vignette-radial {
+    position: relative; /* Needed for pseudo-element positioning */
+}
+
+
+.zen-vignette-linear::before, .zen-vignette-radial::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+    z-index: 10; /* Ensure it's above content but below UI like modals */
+    opacity: var(--vignette-opacity, 0.75);
+    /* TODO: fix glich from below animation */
+    /* transition: opacity 0.3s ease-out; */
+}
+
+.zen-vignette-linear::before {
+    background: linear-gradient(to right,
+        var(--background-primary-alt, black) 0%,
+        transparent var(--vignette-scale-linear, 20%),
+        transparent calc(100% - var(--vignette-scale-linear, 20%)),
+        var(--background-primary-alt, black) 100%);
+}
+
+.zen-vignette-radial::before {
+    background: radial-gradient(ellipse at center,
+        transparent 0%,
+        transparent var(--vignette-scale-radial, 75%),
+        var(--background-primary-alt, black) 100%);
+}
+
+/*
+ * --- READABLE LINE WIDTH (For Zen Mode) ---
+ * make like obsidians own.
+*/
+
+.zen-force-readable-preview.markdown-preview-view .markdown-preview-sizer {
+    margin-left: auto !important;
+    margin-right: auto !important;
+}
+
+.zen-generic-readable {
+    padding-left: 15% !important;
+    padding-right: 15% !important;
+    box-sizing: border-box !important;
+}
+
+/*
+ * --- SIMULATED FULLSCREEN ZEN MODE STYLES ---
+ * These styles are applied when Zen mode uses the "simulated" presentation.
+ * They hide standard Obsidian UI and make the active leaf element occupy the entire viewport.
+*/
+
+/* another scrollbar wahala */
+body.obsidian-zen-mode-simulated-active {
+    overflow: hidden !important;
+}
+
+/* Hides common Obsidian UI elements when (SIMULATED Zen mode is active!) */
+body.obsidian-zen-mode-simulated-active .workspace-ribbon,
+body.obsidian-zen-mode-simulated-active .status-bar,
+body.obsidian-zen-mode-simulated-active .workspace-drawer.mod-left,
+body.obsidian-zen-mode-simulated-active .workspace-drawer.mod-right,
+body.obsidian-zen-mode-simulated-active .app-container > .horizontal-tab-content > .workspace > .workspace-tabs:not(:has(.workspace-leaf.zen-mode-active-leaf))
+{
+    display: none !important;
+}
+
+/* if not active fuck off */
+body.obsidian-zen-mode-simulated-active .workspace-leaf:not(.zen-mode-active-leaf) {
+    display: none !important;
+}
+
+/* Take over the entire screen. */
+body.obsidian-zen-mode-simulated-active .workspace-leaf.zen-mode-active-leaf {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    z-index: var(--layer-modal, 20) !important; /* Use theme variable for z-index or high fixed value */
+    background-color: var(--background-primary);
+    display: flex !important;
+    flex-direction: column !important;
+    margin: 0 !important;
+    border: none !important;
+    /* maybe do some animation if it's too janky... its NOT! 🥲🥲*/
+}
+
+
+/*
+body.obsidian-zen-mode-simulated-active .workspace-leaf.zen-mode-active-leaf.zen-animate {
+    animation: zen-fadeIn var(--fadeIn-duration, 0.5s) ease-out forwards;
+}
+*/
+
+/* children of the fullscreened leaf expand issue solved. */
+/* view header within active leaf issue solved. */
+body.obsidian-zen-mode-simulated-active .workspace-leaf.zen-mode-active-leaf > .view-header {
+    flex-shrink: 0;
+}
+
+body.obsidian-zen-mode-simulated-active .workspace-leaf.zen-mode-active-leaf > .workspace-leaf-content {
+    flex-grow: 1 !important;
+    height: 100% !important;
+    width: 100% !important;
+    contain: layout style paint;
+}
+
+
+/*
+ * --- NATIVE FULLSCREEN ZEN MODE ---
+ * This will mostly be handled by the browser
+ * The .zen-animate, .zen-hide, .zen-vignette-* classes will apply to elements *within* the native fullscreen view.
+ * body to hide some edge cases
+*/
+body.obsidian-zen-mode-native-active {
+}
+
+/*
+ * --- CROSS-PLATFORM FOCUS MODE STYLES ---
+ * MAke sure to Update to use obsidian api
+ */
+
+/* Desktop Elements to Hide */
+body.obsidian-cross-platform-focus-active.cp-hide-left-ribbon .workspace-ribbon.mod-left { display: none !important; }
+body.obsidian-cross-platform-focus-active.cp-hide-right-ribbon .workspace-ribbon.mod-right { display: none !important; }
+body.obsidian-cross-platform-focus-active.cp-hide-left-sidebar .workspace-split.mod-left-split { display: none !important; }
+body.obsidian-cross-platform-focus-active.cp-hide-right-sidebar .workspace-split.mod-right-split { display: none !important; }
+body.obsidian-cross-platform-focus-active.cp-hide-status-bar .status-bar { display: none !important; }
+body.obsidian-cross-platform-focus-active.cp-hide-top-tab-container .workspace-tab-header-container { display: none !important; }
+
+/* Mobile Elements to Hide */
+body.obsidian-cross-platform-focus-active.cp-mobile-hide-navbar .mobile-navbar { display: none !important; }
+body.obsidian-cross-platform-focus-active.cp-mobile-hide-view-header .view-header { display: none !important; } /* Know to cause issues on mobile */
+body.obsidian-cross-platform-focus-active.cp-mobile-hide-tab-header-inner .workspace-tab-header-inner { display: none !important; }
+/* For tablets, an additional rule for the whole tab container if it's different from desktop's .workspace-tab-header-container */
+body.is-tablet.obsidian-cross-platform-focus-active.cp-mobile-hide-tab-header-container-tablet .workspace-tab-header-container { display: none !important; }
+
+/*
+ * Adjustments for content area when sidebars are hidden in Cross-Platform Focus Mode.
+ * Known Issue With custom themes and specific other store once.
+*/
+body.obsidian-cross-platform-focus-active.cp-hide-left-sidebar .workspace-leaf:not(:only-child) {
+    /* if left sidebar is hidden */
+}
+body.obsidian-cross-platform-focus-active.cp-hide-right-sidebar .workspace-leaf:not(:only-child) {
+    /* right sidebar */
+}
+
+
+/* --------------------------------- */
+
+.summary-heading {
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+  line-height: 2;
+  display: inline;
+}
+
+
+
+
