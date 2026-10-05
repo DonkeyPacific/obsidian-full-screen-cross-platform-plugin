@@ -4,16 +4,27 @@ import { Platform } from "obsidian";
 
 interface CrossPlatformFullScreenSettings {
 	consecutiveClickTimes: number;
+	enterSystemFullScreen: boolean;
 }
 
 const DEFAULT_SETTINGS: Partial<CrossPlatformFullScreenSettings> = {
-	consecutiveClickTimes: 3
+	consecutiveClickTimes: 3,
+	enterSystemFullScreen: false
 };
+
+interface ElectronWindow {
+	isFullScreen(): boolean;
+	setFullScreen(flag: boolean): void;
+}
 
 export default class CrossPlatformFullScreenPlugin extends Plugin {
 	settings: CrossPlatformFullScreenSettings;
 	elementsStatusMap: Map<string, string> = new Map<string, string>();
 	i18n: I18n;
+	// whether the plugin's fullscreen mode is currently on
+	isFullScreen = false;
+	// whether the plugin put the window into system fullscreen (so it should also exit it)
+	enteredSystemFullScreen = false;
 
 	handleClickFunc: (evt: Event) => void;
 
@@ -71,7 +82,35 @@ export default class CrossPlatformFullScreenPlugin extends Plugin {
 		});
 	}
 
+	getElectronWindow(): ElectronWindow | null {
+		try {
+			// eslint-disable-next-line @typescript-eslint/no-explicit-any
+			return (window as any).require('electron').remote.getCurrentWindow();
+		} catch (e) {
+			return null;
+		}
+	}
+
+	isSystemFullScreen(): boolean {
+		const win = this.getElectronWindow();
+		return win ? win.isFullScreen() : !!document.fullscreenElement;
+	}
+
+	setSystemFullScreen(on: boolean) {
+		const win = this.getElectronWindow();
+		if (win) {
+			win.setFullScreen(on);
+			return;
+		}
+		if (on && !document.fullscreenElement) {
+			document.documentElement.requestFullscreen().catch(() => {});
+		} else if (!on && document.fullscreenElement) {
+			document.exitFullscreen().catch(() => {});
+		}
+	}
+
 	async toggleFullScreen() {
+		const entering = !this.isFullScreen;
 		if (Platform.isMobile) {
 			const clsArr = ['.mobile-navbar', '.view-header', '.workspace-tab-header-inner'];
 			if(Platform.isTablet){
@@ -84,11 +123,28 @@ export default class CrossPlatformFullScreenPlugin extends Plugin {
 				'.workspace-tab-header-container',
 				'.workspace-split.mod-horizontal.mod-right-split'
 			]);
+			if (this.settings.enterSystemFullScreen) {
+				if (entering) {
+					// only take over system fullscreen if the window isn't already in it
+					if (!this.isSystemFullScreen()) {
+						this.setSystemFullScreen(true);
+						this.enteredSystemFullScreen = true;
+					}
+				} else if (this.enteredSystemFullScreen) {
+					this.setSystemFullScreen(false);
+				}
+			}
 		}
+		if (!entering) {
+			this.enteredSystemFullScreen = false;
+		}
+		this.isFullScreen = entering;
 	}
 
 	onunload() {
-
+		if (this.enteredSystemFullScreen) {
+			this.setSystemFullScreen(false);
+		}
 	}
 
 	async loadSettings() {
@@ -132,5 +188,19 @@ class SettingTab extends PluginSettingTab {
 						this.plugin.saveSettings();
 					});
 			});
+
+		if (Platform.isDesktopApp) {
+			new Setting(containerEl)
+				.setName(i18n.t('systemFullScreen'))
+				.setDesc(i18n.t('systemFullScreenDes'))
+				.addToggle(component => {
+					component
+						.setValue(this.plugin.settings.enterSystemFullScreen)
+						.onChange((value) => {
+							this.plugin.settings.enterSystemFullScreen = value;
+							this.plugin.saveSettings();
+						});
+				});
+		}
 	}
 }
