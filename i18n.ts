@@ -3,7 +3,9 @@ export const TRANSLATION_EN = new Map<string, string>([
 	["toggleMouseShortcutsDes", "The number of consecutive mouse or touchscreen clicks, with a time interval between two clicks less than 300ms."],
 	["doubleClick", "double click"],
 	["tripleClick", "triple click"],
-	["noClick", "command|hotkey only"]
+	["noClick", "command|hotkey only"],
+	["systemFullScreen", "Also enter system fullscreen"],
+	["systemFullScreenDes", "When toggling on, also make the Obsidian window fullscreen. If the window is already fullscreen, only the Obsidian interface is hidden and the window stays fullscreen when toggling off."]
 ]);
 
 export const TRANSLATION_CH = new Map<string, string>([
